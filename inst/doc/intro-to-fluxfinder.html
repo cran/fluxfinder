@@ -522,37 +522,39 @@ converged.</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                             <span class="at">group_column =</span> <span class="st">&quot;Plot&quot;</span>, </span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                             <span class="at">time_column =</span> <span class="st">&quot;TIMESTAMP&quot;</span>, </span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                             <span class="at">gas_column =</span> <span class="st">&quot;CO2_umol_m2&quot;</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                             <span class="at">dead_band =</span> <span class="dv">10</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                             <span class="at">dead_band =</span> <span class="dv">10</span>) </span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: HM81_flux.estimate is not NA, implying nonlinear data</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: HM81_flux.estimate is not NA, implying nonlinear data</span></span>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: HM81_flux.estimate is not NA, implying nonlinear data</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># By default, ffi_compute_fluxes returns a data.frame with one row per</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># grouping variable value (i.e., per measurement). The first column is the</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># group label; the second is the average value of the `time_column`;</span></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># and the rest of the columns are fit statistics for a linear fit of</span></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># concentration as a function of time, along with information about polynomial</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># and robust-linear fits. See ?ffi_compute_fluxes for more details.</span></span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="fu">names</span>(fluxes)</span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Plot&quot;               &quot;TIMESTAMP&quot;          &quot;HM81_AIC&quot;          </span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;HM81_RMSE&quot;          &quot;HM81_flux.estimate&quot; &quot;HM81_p.value&quot;      </span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;HM81_r.squared&quot;     &quot;lin_AIC&quot;            &quot;lin_RMSE&quot;          </span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt; [10] &quot;lin_flux.estimate&quot;  &quot;lin_flux.std.error&quot; &quot;lin_int.estimate&quot;  </span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt; [13] &quot;lin_int.std.error&quot;  &quot;lin_p.value&quot;        &quot;lin_r.squared&quot;     </span></span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; [16] &quot;poly_AIC&quot;           &quot;poly_RMSE&quot;          &quot;poly_r.squared&quot;    </span></span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; [19] &quot;rob_AIC&quot;            &quot;rob_RMSE&quot;           &quot;rob_converged&quot;     </span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt; [22] &quot;rob_flux.estimate&quot;  &quot;rob_flux.std.error&quot; &quot;TIMESTAMP_min&quot;     </span></span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt; [25] &quot;TIMESTAMP_max&quot;</span></span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co"># For clarity, print out only a subset of the columns </span></span>
-<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a>fluxes[<span class="fu">c</span>(<span class="st">&quot;Plot&quot;</span>, <span class="st">&quot;TIMESTAMP&quot;</span>, <span class="st">&quot;lin_r.squared&quot;</span>, <span class="st">&quot;lin_flux.estimate&quot;</span>, <span class="st">&quot;HM81_flux.estimate&quot;</span>)]</span>
-<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co">#&gt;   Plot           TIMESTAMP lin_r.squared lin_flux.estimate HM81_flux.estimate</span></span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co">#&gt; 1    A 2022-10-27 10:36:15     0.9486012          4.862042           4.794940</span></span>
-<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co">#&gt; 2    B 2022-10-27 10:37:54     0.9467074          4.024164                 NA</span></span>
-<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co">#&gt; 3    C 2022-10-27 10:39:24     0.6002940          3.967315           4.483758</span></span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co">#&gt; 4    D 2022-10-27 10:41:02     0.9560099          6.463719                 NA</span></span>
-<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co">#&gt; 5    E 2022-10-27 10:42:32     0.9825172          6.680752                 NA</span></span>
-<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co">#&gt; 6    F 2022-10-27 10:43:54     0.9512708          7.231148           6.261085</span></span></code></pre></div>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#Here we use a constant dead band value, but this can also vary by group; see the documentation</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># By default, ffi_compute_fluxes returns a data.frame with one row per</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># grouping variable value (i.e., per measurement). The first column is the</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co"># group label; the second is the average value of the `time_column`;</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co"># and the rest of the columns are fit statistics for a linear fit of</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co"># concentration as a function of time, along with information about polynomial</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># and robust-linear fits. See ?ffi_compute_fluxes for more details.</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="fu">names</span>(fluxes)</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Plot&quot;               &quot;TIMESTAMP&quot;          &quot;HM81_AIC&quot;          </span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;HM81_RMSE&quot;          &quot;HM81_flux.estimate&quot; &quot;HM81_p.value&quot;      </span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;HM81_r.squared&quot;     &quot;lin_AIC&quot;            &quot;lin_RMSE&quot;          </span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; [10] &quot;lin_flux.estimate&quot;  &quot;lin_flux.std.error&quot; &quot;lin_int.estimate&quot;  </span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; [13] &quot;lin_int.std.error&quot;  &quot;lin_p.value&quot;        &quot;lin_r.squared&quot;     </span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt; [16] &quot;poly_AIC&quot;           &quot;poly_RMSE&quot;          &quot;poly_r.squared&quot;    </span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt; [19] &quot;rob_AIC&quot;            &quot;rob_RMSE&quot;           &quot;rob_converged&quot;     </span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt; [22] &quot;rob_flux.estimate&quot;  &quot;rob_flux.std.error&quot; &quot;TIMESTAMP_min&quot;     </span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co">#&gt; [25] &quot;TIMESTAMP_max&quot;</span></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co"># For clarity, print out only a subset of the columns </span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a>fluxes[<span class="fu">c</span>(<span class="st">&quot;Plot&quot;</span>, <span class="st">&quot;TIMESTAMP&quot;</span>, <span class="st">&quot;lin_r.squared&quot;</span>, <span class="st">&quot;lin_flux.estimate&quot;</span>, <span class="st">&quot;HM81_flux.estimate&quot;</span>)]</span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co">#&gt;   Plot           TIMESTAMP lin_r.squared lin_flux.estimate HM81_flux.estimate</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co">#&gt; 1    A 2022-10-27 10:36:15     0.9486012          4.862042           4.794940</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co">#&gt; 2    B 2022-10-27 10:37:54     0.9467074          4.024164                 NA</span></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co">#&gt; 3    C 2022-10-27 10:39:24     0.6002940          3.967315           4.483758</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co">#&gt; 4    D 2022-10-27 10:41:02     0.9560099          6.463719                 NA</span></span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a><span class="co">#&gt; 5    E 2022-10-27 10:42:32     0.9825172          6.680752                 NA</span></span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a><span class="co">#&gt; 6    F 2022-10-27 10:43:54     0.9512708          7.231148           6.261085</span></span></code></pre></div>
 <p>Note that the <code>fluxes</code> extract printed above has one row
 per <code>Plot</code>, the grouping variable; the mean
 <code>TIMESTAMP</code> of the group; model statistics such as
